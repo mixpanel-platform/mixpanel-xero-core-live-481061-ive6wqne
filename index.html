@@ -342,13 +342,14 @@
       $('#run').on('click', function() {
         var events = [];
         for (var i = 0, j = $('.event_select').length; i < j; i++) {
-          var eventName = $($('.event_select')[i]).val();
+          var eventName = $($('.event_select')[i])[0].innerText.slice(0,-1); // Nolan addition
           if (eventName != null) {
             events.push(eventName);
           }
         }
         event_list = events;
-        runQuery();
+        console.log(event_list);
+        //runQuery();
       });
       $('#funnel-query').on('click', function() {
         var newEvents = [];
