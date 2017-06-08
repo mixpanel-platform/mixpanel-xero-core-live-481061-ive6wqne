@@ -300,7 +300,7 @@
           $('<div class="right-arrow"></div>').insertBefore($add);
         }
         // Nolan additions
-        var eventSelect = $('<div class="event_select inline block" id="' + i + '"></div>').insertBefore($add).MPSelect(globalEvents);
+        var eventSelect = $('<div class="event_select inline block" id="' + i + '"></div>').insertBefore($add).MPSelect(global_events);
         // end nolan additions
         var eventSelect = a;
       }
@@ -315,7 +315,7 @@
         // Nolan addition
         MP.api.topEvents({limit:1500}).done(function(results) {
           _.each(results.values(), function(result){
-            globalEvents.items.push({"label": result, "value": result});
+            global_events.items.push({"label": result, "value": result});
           });
           addEvent(0);
         });
