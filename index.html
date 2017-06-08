@@ -289,6 +289,7 @@
       var event_list = [];
       var path_length = 3;
       var funnel_select = [];
+      var global_events = {items: []}; // Nolan added
       
       // add events
       var $events = $('#events');
@@ -298,7 +299,10 @@
         if (i > 0) {
           $('<div class="right-arrow"></div>').insertBefore($add);
         }
-        var eventSelect = $('<div class="event_select inline block" id="' + i + '"></div>').insertBefore($add).MPEventSelect();
+        // Nolan additions
+        var eventSelect = $('<div class="event_select inline block" id="' + i + '"></div>').insertBefore($add).MPSelect(globalEvents);
+        // end nolan additions
+        var eventSelect = a;
       }
       function resetEvents() {
         // clear event dropdowns
@@ -308,7 +312,14 @@
       }
 
       $(document).ready(function() {
-        addEvent(0);
+        // Nolan addition
+        MP.api.topEvents({limit:1500}).done(function(results) {
+          _.each(results.values(), function(result){
+            globalEvents.items.push({"label": result, "value": result});
+          });
+          addEvent(0);
+        });
+        // end nolan addition
       });
       $('#add').on('click', function() {
         var numEvents = $('.event_select').length;
